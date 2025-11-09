@@ -1,0 +1,68 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <ctype.h>
+
+int q3 (char *texto, char c, int isCaseSensitive){
+	
+	int tam = strlen(texto);
+	int ascii = c;
+	int ocorrencia = 0;
+	
+	if (isCaseSensitive == 1){
+		for (int i = 0; i<tam; i++){
+			if (texto[i] == c){
+				ocorrencia++;
+			}
+		}
+	}
+	
+	if (isCaseSensitive != 1){
+		if (ascii >= 65 && ascii <= 90){
+			for (int i = 0; i<tam; i++){
+			texto[i] = toupper(texto[i]);
+			}
+		for (int i = 0; i<tam; i++){
+			if (texto[i] == ascii){
+				ocorrencia++;
+			}
+		}
+	}
+		
+		if (ascii >= 97 && ascii <= 122){
+			for (int i=0; i<tam; i++){
+				texto[i] = tolower(texto[i]);
+			}
+			for (int i=0; i<tam; i++){
+				if (texto[i] == ascii){
+					ocorrencia++;
+				}
+			}
+		}
+	}
+	
+	return ocorrencia;
+	
+}
+
+int main(){
+	
+	char texto[251];
+	char caractere;
+	int isCaseSensitive;
+	int ocorrencia;
+	
+	printf("Digite o texto: ");
+	fgets (texto, 250, stdin);
+	
+	printf("Digite o caractere: ");
+	scanf("%c", &caractere);
+	
+	printf("Digite 1 para considerar diferença entre maisculo e minusculo: ");
+	scanf("%d", &isCaseSensitive);
+	
+	ocorrencia = q3(texto, caractere, isCaseSensitive);
+	
+	printf("O caractere '%c' se repetiu %d vezes", caractere, ocorrencia);
+	
+}
