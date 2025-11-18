@@ -91,20 +91,109 @@ int teste(int a)
  */
 int q1(char data[])
 {
-  int datavalida = 1;
+  #include <stdio.h>
+#include <string.h>
 
-  //quebrar a string data em strings sDia, sMes, sAno
+int converter (char texto[]) {
+    int i;
+	int numero = 0;
 
+    for (i = 0; texto[i] != '\0'; i++) {
+        if (texto[i] >= '0' && texto[i] <= '9') {
+            numero = numero * 10 + (texto[i] - '0');
+        } else {
+            return -1;
+        }
+    }
 
-  //printf("%s\n", data);
+    return numero;
+}
 
-  if (datavalida)
+int q1 (char data []){
+	
+           int datavalida = 1;
+	int tam = strlen(data);
+	int i, j = 0;
+	char sDia[3];
+	char sMes[3];
+	char sAno[5];
+	int dia, mes, ano;
+	
+	
+	
+	for ( i = 0; i < tam && data[i] != '/'; i++){
+		if (j < 2){
+			sDia[j++] = data[i];
+	}
+		else{
+		datavalida = 0;
+		}
+	}
+	sDia[j] = '\0';
+	
+	if (data[i] != '/'){
+		datavalida = 0;
+	}
+	
+	i++;
+	j = 0;
+	
+	for (; i < tam && data[i] != '/'; i++){
+		if (j < 2){
+			sMes[j++] =  data[i];
+		} else {
+		datavalida = 0;
+		}
+	}
+	sMes[j] = '\0';
+	
+	if (data[i] != '/'){
+		datavalida = 0;
+	}
+	
+	i++;
+	j = 0;
+	
+	for (; i<tam; i++){
+		if (j < 4){
+			sAno[j++] = data[i];
+		} else {
+			datavalida = 0;
+		}
+	}
+	sAno[j] = '\0';
+	
+	dia = converter(sDia);
+	mes = converter(sMes);
+	
+	if (strlen(sAno) == 4){
+	ano = converter(sAno);
+	} else if (strlen(sAno) == 2){
+		ano = converter(sAno) + 2000;
+	}
+	
+	if (mes < 1 || mes > 12) 
+	datavalida = 0;
+		else if (dia < 1 || dia > 31) 
+		datavalida = 0;
+			else {
+    		if (mes == 4 || mes == 6 || mes == 9 || mes == 11) {
+       			if (dia > 30) 
+				datavalida = 0;
+   					} else if (mes == 2) {
+      				int bissexto = (ano % 400 == 0) || (ano % 4 == 0 && ano % 100 != 0);
+       					if (bissexto && dia > 29) 
+						datavalida = 0;
+        					else if (!bissexto && dia > 28) 
+							datavalida = 0;
+    }	
+}
+	
+	 if (datavalida)
       return 1;
   else
       return 0;
 }
-
-
 
 /*
  Q2 = diferença entre duas datas
