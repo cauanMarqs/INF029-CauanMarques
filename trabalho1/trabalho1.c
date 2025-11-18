@@ -244,43 +244,52 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
     Um número n >= 0.
  */
 int q3(char *texto, char c, int isCaseSensitive){
-
+    
 	int qtdOcorrencias = -1;
-	int tam = strlen(texto);
-	int ascii = c;
 	int ocorrencia = 0;
+	int tam = strlen(texto);
 	
+	if (isCaseSensitive != 1){	
+		if (c >= 65 && c <= 90){
+			for (int i=0; i<tam; i++){
+			if (texto[i] >= 'a' && texto[i] <= 'z'){
+				texto[i] = texto[i] - 32;
+				}
+			}
+			for (int i=0; i<tam; i++){
+			if (texto[i] == c){
+				ocorrencia++;
+				}
+			}
+		}
+		
+			if (c >= 97 && c <= 122){
+				for (int i=0; i<tam; i++){
+					if (texto[i] >= 'A' && texto[i] <= 'Z'){
+						texto[i] = texto[i] + 32;
+					}
+				}
+				for (int i=0; i<tam; i++){
+					if (texto[i] == c){
+						ocorrencia++;
+						}
+					}
+				}
+	
+	qtdOcorrencias = ocorrencia;
+	return qtdOcorrencias;
+}
+
 	if (isCaseSensitive == 1){
 		for (int i=0; i<tam; i++){
 			if (texto[i] == c){
 				ocorrencia++;
 			}
 		}
-	}
-	
-	if (isCaseSensitive != 1){
-		if (ascii >= 65 && ascii <= 90){
-			for (int i=0; i<tam; i++){
-				texto[i] = texto[i] + ('A' - 'a');
-			}
-		}
-		
-		else if (ascii >= 97 && ascii <= 122){
-			for (int i=0; i<tam; i++){
-				texto[i] = texto[i] + ('a' - 'A');
-			}
-		}
-		
-		for (int i=0; i<tam; i++){
-			if (texto[i] == c){
-				ocorrencia++;
-			}
-		}
-	}
-	
 	qtdOcorrencias = ocorrencia;
 	return qtdOcorrencias;
 	}
+}
 
 /*
  Q4 = encontrar palavra em texto
