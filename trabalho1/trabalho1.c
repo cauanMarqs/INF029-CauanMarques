@@ -10,10 +10,10 @@
 //  O aluno deve preencher seus dados abaixo, e implementar as questões do trabalho
 
 //  ----- Dados do Aluno -----
-//  Nome:
-//  email:
-//  Matrícula:
-//  Semestre:
+//  Nome: Cauan Marques Santos
+//  email: cauanmarqs@gmail.com
+//  Matrícula: 20251160040
+//  Semestre: 2
 
 //  Copyright © 2016 Renato Novais. All rights reserved.
 // Última atualização: 07/05/2021 - 19/08/2016 - 17/10/2025
@@ -23,6 +23,7 @@
 #include <stdio.h>
 #include "trabalho1.h" 
 #include <stdlib.h>
+#include <string.h>
 
 DataQuebrada quebraData(char data[]);
 
@@ -89,10 +90,7 @@ int teste(int a)
     Não utilizar funções próprias de string (ex: strtok)   
     pode utilizar strlen para pegar o tamanho da string
  */
-int q1(char data[])
-{
-  #include <stdio.h>
-#include <string.h>
+int q1(char data[]){
 
 int converter (char texto[]) {
     int i;
@@ -246,19 +244,14 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
     Um número n >= 0.
  */
 int q3(char *texto, char c, int isCaseSensitive){
-    #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-int q3 (char *texto, char c, int isCaseSensitive){
-	
 	int qtdOcorrencias = -1;
 	int tam = strlen(texto);
 	int ascii = c;
 	int ocorrencia = 0;
 	
 	if (isCaseSensitive == 1){
-		for (int i = 0; i<tam; i++){
+		for (int i=0; i<tam; i++){
 			if (texto[i] == c){
 				ocorrencia++;
 			}
@@ -267,35 +260,26 @@ int q3 (char *texto, char c, int isCaseSensitive){
 	
 	if (isCaseSensitive != 1){
 		if (ascii >= 65 && ascii <= 90){
-        for (int i = 0; i < tam; i++){
-            if (texto[i] >= 'a' && texto[i] <= 'z'){
-                texto[i] = texto[i] - ('a' - 'A');
-            }
-        }
-        for (int i = 0; i < tam; i++){
-            if (texto[i] == ascii){
-                ocorrencia++;
+			for (int i=0; i<tam; i++){
+				texto[i] = texto[i] + ('A' - 'a');
 			}
 		}
-	}
 		
-		if (ascii >= 97 && ascii <= 122){		
-			for (int i = 0; i<tam;i++){
-				if (texto[i] >= 'A' && texto[i] <= 'Z'){
-					texto[i] = texto[i] + ('a' - 'A');
-				}
-				for (int i=0; i<tam; i++){
-					if (texto[i] == ascii){
-						ocorrencia++;
-					}
-				}
+		else if (ascii >= 97 && ascii <= 122){
+			for (int i=0; i<tam; i++){
+				texto[i] = texto[i] + ('a' - 'A');
 			}
 		}
-	qtdOcorrencias = ocorrencia;
-	
-	return qtdOcorrencias;	
+		
+		for (int i=0; i<tam; i++){
+			if (texto[i] == c){
+				ocorrencia++;
+			}
+		}
 	}
-  }
+	
+	qtdOcorrencias = ocorrencia;
+	return qtdOcorrencias;
 }
 
 /*
@@ -426,4 +410,5 @@ DataQuebrada quebraData(char data[]){
 	dq.valido = 1;
     
   return dq;
+} 
 }
