@@ -245,11 +245,57 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
  @saida
     Um número n >= 0.
  */
-int q3(char *texto, char c, int isCaseSensitive)
-{
-    int qtdOcorrencias = -1;
+int q3(char *texto, char c, int isCaseSensitive){
+    #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-    return qtdOcorrencias;
+int q3 (char *texto, char c, int isCaseSensitive){
+	
+	int qtdOcorrencias = -1;
+	int tam = strlen(texto);
+	int ascii = c;
+	int ocorrencia = 0;
+	
+	if (isCaseSensitive == 1){
+		for (int i = 0; i<tam; i++){
+			if (texto[i] == c){
+				ocorrencia++;
+			}
+		}
+	}
+	
+	if (isCaseSensitive != 1){
+		if (ascii >= 65 && ascii <= 90){
+        for (int i = 0; i < tam; i++){
+            if (texto[i] >= 'a' && texto[i] <= 'z'){
+                texto[i] = texto[i] - ('a' - 'A');
+            }
+        }
+        for (int i = 0; i < tam; i++){
+            if (texto[i] == ascii){
+                ocorrencia++;
+			}
+		}
+	}
+		
+		if (ascii >= 97 && ascii <= 122){		
+			for (int i = 0; i<tam;i++){
+				if (texto[i] >= 'A' && texto[i] <= 'Z'){
+					texto[i] = texto[i] + ('a' - 'A');
+				}
+				for (int i=0; i<tam; i++){
+					if (texto[i] == ascii){
+						ocorrencia++;
+					}
+				}
+			}
+		}
+	qtdOcorrencias = ocorrencia;
+	
+	return qtdOcorrencias;	
+	}
+  }
 }
 
 /*
