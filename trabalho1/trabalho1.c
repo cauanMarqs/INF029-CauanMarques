@@ -280,7 +280,7 @@ int q3(char *texto, char c, int isCaseSensitive){
 	
 	qtdOcorrencias = ocorrencia;
 	return qtdOcorrencias;
-}
+	}
 
 /*
  Q4 = encontrar palavra em texto
