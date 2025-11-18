@@ -23,24 +23,24 @@
 void testSomar();    //função utilizada para testes
 void testFatorial(); //função utilizada para testes
 void testQ1();
-// void testQ2();
-// void testQ3();
-/* void testQ4();
+void testQ2();
+void testQ3();
+void testQ4();
 void testQ5();
 void testQ6();
-void testQ7();*/
+void testQ7();
 
 int main()
 {
     //testSomar();
     //testFatorial();
     testQ1();
-    // testQ2();
+    testQ2();
     testQ3();
-    /*testQ4();
+    testQ4();
     testQ5();
     testQ6();
-    testQ7(); */
+    testQ7(); 
 }
 
 void testSomar()
@@ -77,7 +77,7 @@ void testQ1()
     printf("%d\n", q1(str) == 0);
 }
 
- /* void testQ2()
+  void testQ2()
 {
     char datainicial[11], datafinal[11];
     int qtdDias, qtdMeses, qtdAnos;
@@ -141,7 +141,7 @@ void testQ1()
     printf("%d\n", q3(str, 'L', 0) == 1);
 } 
 
-/* void testQ4()
+void testQ4()
 {
     char strTexto[250];
     char strBusca[50];
@@ -211,4 +211,4 @@ void testQ7()
     strcpy(stringBusca, "LTBON");
     printf("%d\n", q7(matrix, stringBusca) == 1);
 
-} */
+} 
