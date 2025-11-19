@@ -25,6 +25,21 @@
 #include <stdlib.h>
 #include <string.h>
 
+int converter (char texto[]) {
+    int i;
+	int numero = 0;
+
+    for (i = 0; texto[i] != '\0'; i++) {
+        if (texto[i] >= '0' && texto[i] <= '9') {
+            numero = numero * 10 + (texto[i] - '0');
+        } else {
+            return -1;
+        }
+    }
+
+    return numero;
+}
+
 DataQuebrada quebraData(char data[]);
 
 /*
@@ -92,24 +107,7 @@ int teste(int a)
  */
 int q1(char data[]){
 
-int converter (char texto[]) {
-    int i;
-	int numero = 0;
-
-    for (i = 0; texto[i] != '\0'; i++) {
-        if (texto[i] >= '0' && texto[i] <= '9') {
-            numero = numero * 10 + (texto[i] - '0');
-        } else {
-            return -1;
-        }
-    }
-
-    return numero;
-}
-
-int q1 (char data []){
-	
-           int datavalida = 1;
+	int datavalida = 1;
 	int tam = strlen(data);
 	int i, j = 0;
 	char sDia[3];
@@ -210,27 +208,167 @@ int q1 (char data []){
 DiasMesesAnos q2(char datainicial[], char datafinal[])
 {
 
-    //calcule os dados e armazene nas três variáveis a seguir
-    DiasMesesAnos dma;
-
-    if (q1(datainicial) == 0){
-      dma.retorno = 2;
-      return dma;
-    }else if (q1(datafinal) == 0){
-      dma.retorno = 3;
-      return dma;
-    }else{
-      //verifique se a data final não é menor que a data inicial
-      
-      //calcule a distancia entre as datas
-
-
-      //se tudo der certo
-      dma.retorno = 1;
-      return dma;
-      
+   DiasMesesAnos dma;
+	int Dia1, Mes1, Ano1;
+	int Dia2, Mes2, Ano2;
+	char aux[3], aux2[5];
+	int tam = strlen(datainicial);
+	int tam2 = strlen(datafinal);
+	int j = 0;
+	int i=0;
+	
+	if (q1(datainicial) == 0){
+		dma.retorno = 2;
+		return dma;
+	}
+	
+	if (q1(datafinal) == 0){
+		dma.retorno = 3;
+		return dma;
+	}
+	
+	for (i=0; i<tam && datainicial[i] != '/'; i++){
+		if (j<2){
+			aux[j++] = datainicial[i];
+		}
+	}
+	aux[j] = '\0';
+	
+	Dia1 = converter(aux);
+	
+	if (datainicial[i] != '/'){
+		dma.retorno = 1;
+		return dma;
+	}
+	
+	i++;
+	j = 0;
+	
+	for (; i<tam && datainicial[i] != '/'; i++){
+		if (j<2){
+			aux[j++] = datainicial[i];
+		}
+	}
+	aux[j] = '\0';
+	
+	Mes1 = converter(aux);
+	
+	if (datainicial[i] != '/'){
+		dma.retorno = 1;
+		return dma;
+	}
+	
+	i++;
+	j = 0;
+	
+	for (; i<tam; i++){
+		if (j < 4){
+			aux2[j++] = datainicial[i];
+		} else {
+			dma.retorno = 1;
+			return dma;
+		}
+	}
+	aux2[j] = '\0';
+	
+	if (strlen(aux2) == 4){
+	Ano1 = converter(aux2);
+	} else if (strlen(aux2) == 2){
+		Ano1 = converter(aux2) + 2000;
+	}
+	
+	j = 0;
+	
+	for (i=0; i<tam2 && datafinal[i] != '/'; i++){
+		if (j<2){
+			aux[j++] = datafinal[i];
+		}
+	}
+	aux[j] = '\0';
+	
+	Dia2 = converter(aux);
+	
+	if (datafinal[i] != '/'){
+		dma.retorno = 2;
+		return dma;
+	}
+	
+	i++;
+	j = 0;
+	
+	for (; i<tam2 && datafinal[i] != '/'; i++){
+		if (j<2){
+			aux[j++] = datafinal[i];
+		}
+	}
+	aux[j] = '\0';
+	
+	Mes2 = converter(aux);
+	
+	if (datafinal[i] != '/'){
+		dma.retorno = 2;
+		return dma;
+	}
+	
+	i++;
+	j = 0;
+	
+	for (; i<tam2; i++){
+		if (j < 4){
+			aux2[j++] = datafinal[i];
+		} else {
+			dma.retorno = 2;
+			return dma;
+		}
+	}
+	aux2[j] = '\0';
+	
+	if (strlen(aux2) == 4){
+	Ano2 = converter(aux2);
+	} else if (strlen(aux2) == 2){
+		Ano2 = converter(aux2) + 2000;
+	}
+	
+	if (Ano1 > Ano2 || (Ano1 == Ano2 && Mes1 > Mes2) || (Ano1 == Ano2 && Mes1 == Mes2 && Dia1 > Dia2)) {
+        dma.retorno = 4;
+        return dma;
     }
     
+    int diasPorMes[] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
+    int bissexto = (Ano2 % 400 == 0) || (Ano2 % 4 == 0 && Ano2 % 100 != 0);
+	
+	if (bissexto){
+	diasPorMes[1] = 29;
+	}
+	
+	int d1 = Dia1, d2 = Dia2; 
+	int m1 = Mes1, m2 = Mes2; 
+	int a1 = Ano1, a2 = Ano2;
+
+    int dias = d2 - d1;
+    int meses = m2 - m1;
+    int anos = a2 - a1;
+
+    if (dias < 0) {
+        meses -= 1;
+        int mesAnterior = (m2 - 2 + 12) % 12;
+        if (mesAnterior < 0){
+			mesAnterior += 12;
+		}
+        dias += diasPorMes[mesAnterior];
+    }
+
+    if (meses < 0) {
+        anos -= 1;
+        meses += 12;
+    }
+
+    dma.qtdDias = dias;
+    dma.qtdMeses = meses;
+    dma.qtdAnos = anos;
+    dma.retorno = 1;
+
+    return dma;
 }
 
 /*
