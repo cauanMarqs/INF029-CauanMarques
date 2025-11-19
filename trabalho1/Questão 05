@@ -11,3 +11,12 @@ int q5(int num) {
 	num = invertido;
     return num;
 }
+
+int main (){
+
+    printf("%d\n", q5(345) == 543);
+    printf("%d\n", q5(78) == 87);
+    printf("%d\n", q5(3) == 3);
+    printf("%d\n", q5(5430) == 345);
+}
+

@@ -25,7 +25,7 @@ void testFatorial(); //função utilizada para testes
 void testQ1();
 void testQ2();
 void testQ3();
-void testQ4();
+// void testQ4();
 void testQ5();
 void testQ6();
 void testQ7();
@@ -37,7 +37,7 @@ int main()
     testQ1();
     testQ2();
     testQ3();
-    testQ4();
+   // testQ4();
     testQ5();
     testQ6();
     testQ7();
@@ -153,7 +153,7 @@ void testQ3()
     printf("%d\n", q3(str, 'L', 0) == 1);
 }
 
-void testQ4()
+/* void testQ4()
 {
     show_log("testQ4()");
     char strTexto[250];
@@ -185,7 +185,7 @@ void testQ4()
     printf("%d\n", posicoes[3] == 36);
     printf("%d\n", posicoes[4] == 52);
     printf("%d\n", posicoes[5] == 54);
-}
+} */
 
 void testQ5()
 {

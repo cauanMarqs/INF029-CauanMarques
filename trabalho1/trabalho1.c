@@ -23,6 +23,22 @@
 #include <stdio.h>
 #include "trabalho1.h" 
 #include <stdlib.h>
+#include <string.h>
+
+int converter (char texto[]) {
+    int i;
+	int numero = 0;
+
+    for (i = 0; texto[i] != '\0'; i++) {
+        if (texto[i] >= '0' && texto[i] <= '9') {
+            numero = numero * 10 + (texto[i] - '0');
+        } else {
+            return -1;
+        }
+    }
+
+    return numero;
+}
 
 DataQuebrada quebraData(char data[]);
 
@@ -173,8 +189,6 @@ int q1(char data[]){
       return 0;
 }
 
-
-
 /*
  Q2 = diferença entre duas datas
  @objetivo
@@ -189,15 +203,6 @@ int q1(char data[]){
     4 -> datainicial > datafinal
     Caso o cálculo esteja correto, os atributos qtdDias, qtdMeses e qtdAnos devem ser preenchidos com os valores correspondentes.
  */
-
-typedef struct DiasMesesAnos {
-	
-	int qtdDias;
-	int qtdMeses;
-	int qtdAnos;
-	int retorno;
-	
-} DiasMesesAnos;
 
 DiasMesesAnos q2(char datainicial[], char datafinal[])
 {
@@ -377,50 +382,46 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
  */
 int q3(char *texto, char c, int isCaseSensitive){
 
-  int qtdOcorrencias = -1;
-	int ocorrencia = 0;
-	int tam = strlen(texto);
-	
-	if (isCaseSensitive != 1){	
-		if (c >= 65 && c <= 90){
-			for (int i=0; i<tam; i++){
-			if (texto[i] >= 'a' && texto[i] <= 'z'){
-				texto[i] = texto[i] - 32;
-				}
-			}
-			for (int i=0; i<tam; i++){
-			if (texto[i] == c){
-				ocorrencia++;
-				}
-			}
-		}
-		
-			if (c >= 97 && c <= 122){
-				for (int i=0; i<tam; i++){
-					if (texto[i] >= 'A' && texto[i] <= 'Z'){
-						texto[i] = texto[i] + 32;
-					}
-				}
-				for (int i=0; i<tam; i++){
-					if (texto[i] == c){
-						ocorrencia++;
-						}
-					}
-				}
-	
-	qtdOcorrencias = ocorrencia;
-	return qtdOcorrencias;
-}
+    char copia[300];
+    strcpy(copia, texto);
 
-	if (isCaseSensitive == 1){
-		for (int i=0; i<tam; i++){
-			if (texto[i] == c){
-				ocorrencia++;
-			}
-		}
-	qtdOcorrencias = ocorrencia;
-	return qtdOcorrencias;
-	}
+    int qtdOcorrencias = 0;
+    int tam = strlen(copia);
+
+    if (isCaseSensitive != 1){
+
+        if (c >= 'A' && c <= 'Z'){
+            for (int i = 0; i < tam; i++){
+                if (copia[i] >= 'a' && copia[i] <= 'z'){
+                    copia[i] = copia[i] - 32;
+                }
+            }
+        }
+
+        if (c >= 'a' && c <= 'z'){
+            for (int i = 0; i < tam; i++){
+                if (copia[i] >= 'A' && copia[i] <= 'Z'){
+                    copia[i] = copia[i] + 32;
+                }
+            }
+        }
+
+        for (int i = 0; i < tam; i++){
+            if (copia[i] == c){
+                qtdOcorrencias++;
+            }
+        }
+
+        return qtdOcorrencias;
+    }
+
+    for (int i = 0; i < tam; i++){
+        if (copia[i] == c){
+            qtdOcorrencias++;
+        }
+    }
+
+    return qtdOcorrencias;
 }
 
 /*
