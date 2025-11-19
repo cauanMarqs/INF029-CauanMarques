@@ -1,3 +1,12 @@
+typedef struct DiasMesesAnos {
+	
+	int qtdDias;
+	int qtdMeses;
+	int qtdAnos;
+	int retorno;
+	
+} DiasMesesAnos;
+
 DiasMesesAnos q2(char datainicial[], char datafinal[]) {
 	
 	DiasMesesAnos dma;
