@@ -11,9 +11,9 @@
 
 //  ----- Dados do Aluno -----
 //  Nome: Cauan Marques Santos
-//  email: cauanmarqs@gmail.com
+//  email: cauanmarqs@gmail.com	
 //  Matrícula: 20251160040
-//  Semestre: 2
+//  Semestre: 02
 
 //  Copyright © 2016 Renato Novais. All rights reserved.
 // Última atualização: 07/05/2021 - 19/08/2016 - 17/10/2025
@@ -23,22 +23,6 @@
 #include <stdio.h>
 #include "trabalho1.h" 
 #include <stdlib.h>
-#include <string.h>
-
-int converter (char texto[]) {
-    int i;
-	int numero = 0;
-
-    for (i = 0; texto[i] != '\0'; i++) {
-        if (texto[i] >= '0' && texto[i] <= '9') {
-            numero = numero * 10 + (texto[i] - '0');
-        } else {
-            return -1;
-        }
-    }
-
-    return numero;
-}
 
 DataQuebrada quebraData(char data[]);
 
@@ -106,8 +90,8 @@ int teste(int a)
     pode utilizar strlen para pegar o tamanho da string
  */
 int q1(char data[]){
-
-	int datavalida = 1;
+  
+  int datavalida = 1;
 	int tam = strlen(data);
 	int i, j = 0;
 	char sDia[3];
@@ -188,6 +172,8 @@ int q1(char data[]){
   else
       return 0;
 }
+
+
 
 /*
  Q2 = diferença entre duas datas
@@ -390,8 +376,8 @@ DiasMesesAnos q2(char datainicial[], char datafinal[])
     Um número n >= 0.
  */
 int q3(char *texto, char c, int isCaseSensitive){
-    
-	int qtdOcorrencias = -1;
+
+  int qtdOcorrencias = -1;
 	int ocorrencia = 0;
 	int tam = strlen(texto);
 	
@@ -456,8 +442,8 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
 {
     int qtdOcorrencias = -1;
 
-	// Essa ta além da minha limitadíssima capacidade
-	
+    // Essa ta além da minha limitadíssima capacidade
+
     return qtdOcorrencias;
 }
 
@@ -471,9 +457,9 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
     Número invertido
  */
 
-int q5(int num) {
-    
-	int invertido = 0;
+int q5(int num){
+
+int invertido = 0;
 
     while (num != 0) {
         int digito = num % 10; 
@@ -495,9 +481,9 @@ int q5(int num) {
     Quantidade de vezes que número de busca ocorre em número base
  */
 
-int q6(int numerobase, int numerobusca){
-    
-	int qtdOcorrencias = 0;
+int q6(int numerobase, int numerobusca)
+{
+    int qtdOcorrencias = 0;
     int base = numerobase;
     int busca = numerobusca;
     int tamBusca = 0;
@@ -546,8 +532,8 @@ int q6(int numerobase, int numerobusca){
  */
 
  int q7(char matriz[8][10], char palavra[5]){
-	
-	int achou = 0;
+
+    int achou = 0;
     int linhas = 8;
     int colunas = 10;
     int tamanho = 0;
@@ -641,4 +627,4 @@ DataQuebrada quebraData(char data[]){
 	dq.valido = 1;
     
   return dq;
-} 
+}
