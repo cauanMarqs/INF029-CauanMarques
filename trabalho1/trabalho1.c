@@ -471,9 +471,17 @@ int q4(char *strTexto, char *strBusca, int posicoes[30])
     Número invertido
  */
 
-int q5(int num)
-{
+int q5(int num) {
+    
+	int invertido = 0;
 
+    while (num != 0) {
+        int digito = num % 10; 
+        invertido = invertido * 10 + digito; 
+        num /= 10;
+    }
+    
+	num = invertido;
     return num;
 }
 
