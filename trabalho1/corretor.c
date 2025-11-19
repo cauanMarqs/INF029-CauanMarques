@@ -128,7 +128,7 @@ void testQ1()
     printf("%d\n", dma.qtdDias == 1);
     printf("%d\n", dma.qtdMeses == 1);
     printf("%d\n", dma.qtdAnos == 0);
-} */
+} 
 
  void testQ3()
 {

@@ -115,8 +115,6 @@ int q1(char data[]){
 	char sAno[5];
 	int dia, mes, ano;
 	
-	
-	
 	for ( i = 0; i < tam && data[i] != '/'; i++){
 		if (j < 2){
 			sDia[j++] = data[i];
@@ -644,4 +642,3 @@ DataQuebrada quebraData(char data[]){
     
   return dq;
 } 
-}
