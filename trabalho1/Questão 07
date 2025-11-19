@@ -1,0 +1,39 @@
+int q7(char matriz[8][10], char palavra[5]) {
+	
+	int achou = 0;
+    int linhas = 8;
+    int colunas = 10;
+    int tamanho = 0;
+    int x = 0;
+    int y = 0;
+    int k = 0;
+    int dir;
+    
+    while (palavra[tamanho] != '\0'){
+    	tamanho++;
+	}
+
+    int direcaoX [] = {0, 1, 0, -1, 1, 1, -1, -1}; 
+    int direcaoY [] = {1, 0, -1, 0, 1, -1, 1, -1}; 
+
+    for (int i = 0; i < linhas; i++) {
+        for (int j = 0; j < colunas; j++) {
+            for (dir = 0; dir < 8; dir++) {
+                x = i;
+				y = j;
+                for (k = 0; k < tamanho; k++){
+                    if (x < 0 || x >= linhas || y < 0 || y >= colunas) 
+					break;
+                    if (matriz[x][y] != palavra[k]) 
+					break;
+                    x += direcaoX[dir];
+                    y += direcaoY[dir];
+                }
+                if (k == tamanho){
+                	achou = 1;
+				}
+            }
+        }
+    }
+    return achou;
+}
