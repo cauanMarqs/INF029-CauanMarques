@@ -205,6 +205,16 @@ int q1(char data[]){
     4 -> datainicial > datafinal
     Caso o cálculo esteja correto, os atributos qtdDias, qtdMeses e qtdAnos devem ser preenchidos com os valores correspondentes.
  */
+
+typedef struct DiasMesesAnos {
+	
+	int qtdDias;
+	int qtdMeses;
+	int qtdAnos;
+	int retorno;
+	
+} DiasMesesAnos;
+
 DiasMesesAnos q2(char datainicial[], char datafinal[])
 {
 
