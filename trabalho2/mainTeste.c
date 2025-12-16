@@ -19,14 +19,14 @@ int main()
 {
     inicializar();
     testeInserirSemNada();
-    /*testeCriarEstrutura();
+    testeCriarEstrutura();
     testeInserirComEstrutura();
     testeExcluir();
     testeExcluirNumeroEspecifico();
     testeListar();
     testeRetornarTodosNumeros();
     testeMudarTamanhoEstrutura();
-    testeListaEncadeada();*/
+    //testeListaEncadeada();
     finalizar();
 }
 int ligado = 0;
@@ -257,7 +257,7 @@ void testeMudarTamanhoEstrutura()
 5 [1,34,12,6,27,-6, , , , ]
 */
 
-void testeListaEncadeada()
+/* void testeListaEncadeada()
 {
     show_log("testeListaEncadeada()");
     int vet[10];
@@ -278,4 +278,4 @@ void testeListaEncadeada()
     destruirListaEncadeadaComCabecote(&inicio);
 
     printf("%d\n", inicio == NULL);
-}
+}*/
