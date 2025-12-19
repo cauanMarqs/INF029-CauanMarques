@@ -11,6 +11,11 @@ typedef struct Estrutura {
 	int qtd;
 } Estrutura;
 
+typedef struct No {
+    int valor;
+    struct No *prox;
+} No;
+
 Estrutura vetorPrincipal[TAM];
 
 void ordenar (int v[], int n){
@@ -379,17 +384,59 @@ Retorno (No*)
 */
 No *montarListaEncadeadaComCabecote()
 {
+    No *cabecote = NULL;
+    No *atual = NULL;
 
-    return NULL;
+    for (int i = 0; i < TAM; i++) {
+        if (vetorPrincipal[i].vetorAux != NULL && vetorPrincipal[i].qtd > 0) {
+
+            if (cabecote == NULL) {
+                cabecote = (No *) malloc(sizeof(No));
+                if (cabecote == NULL)
+                    return NULL;
+
+                cabecote->prox = NULL;
+                atual = cabecote;
+            }
+
+            for (int j = 0; j < vetorPrincipal[i].qtd; j++) {
+                No *novo = (No *) malloc(sizeof(No));
+                if (novo == NULL)
+                    return cabecote;
+
+                novo->valor = vetorPrincipal[i].vetorAux[j];
+                novo->prox = NULL;
+
+                atual->prox = novo;
+                atual = novo;
+            }
+        }
+    }
+
+    return cabecote;
 }
 
 /*
 Objetivo: retorna os números da lista enceada com cabeçote armazenando em vetorAux.
 Retorno void
 */
-void getDadosListaEncadeadaComCabecote(No *inicio, int vetorAux[])
+void destruirListaEncadeadaComCabecote(No **inicio)
 {
+    if (inicio == NULL || *inicio == NULL)
+        return;
+
+    No *atual = *inicio;
+    No *prox;
+
+    while (atual != NULL) {
+        prox = atual->prox;
+        free(atual);
+        atual = prox;
+    }
+
+    *inicio = NULL;
 }
+
 
 /*
 Objetivo: Destruir a lista encadeada com cabeçote a partir de início.
@@ -398,9 +445,20 @@ O ponteiro inicio deve ficar com NULL.
 Retorno 
     void.
 */
-void destruirListaEncadeadaComCabecote(No **inicio)
+void getDadosListaEncadeadaComCabecote(No *inicio, int vetorAux[])
 {
+    if (inicio == NULL)
+        return;
+
+    No *aux = inicio->prox;
+    int i = 0;
+
+    while (aux != NULL) {
+        vetorAux[i++] = aux->valor;
+        aux = aux->prox;
+    }
 }
+
 
 /*
 Objetivo: inicializa o programa. deve ser chamado ao inicio do programa 
