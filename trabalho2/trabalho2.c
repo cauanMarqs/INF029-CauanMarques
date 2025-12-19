@@ -11,11 +11,6 @@ typedef struct Estrutura {
 	int qtd;
 } Estrutura;
 
-typedef struct No {
-    int valor;
-    struct No *prox;
-} No;
-
 Estrutura vetorPrincipal[TAM];
 
 void ordenar (int v[], int n){
@@ -404,7 +399,7 @@ No *montarListaEncadeadaComCabecote()
                 if (novo == NULL)
                     return cabecote;
 
-                novo->valor = vetorPrincipal[i].vetorAux[j];
+                novo->conteudo = vetorPrincipal[i].vetorAux[j];
                 novo->prox = NULL;
 
                 atual->prox = novo;
@@ -454,7 +449,7 @@ void getDadosListaEncadeadaComCabecote(No *inicio, int vetorAux[])
     int i = 0;
 
     while (aux != NULL) {
-        vetorAux[i++] = aux->valor;
+        vetorAux[i++] = aux->conteudo;
         aux = aux->prox;
     }
 }
